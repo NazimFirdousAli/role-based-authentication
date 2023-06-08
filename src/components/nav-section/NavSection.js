@@ -1,6 +1,8 @@
+import { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink as RouterLink } from 'react-router-dom';
 // @mui
+import { useSelector } from 'react-redux';
 import { Box, List, ListItemText } from '@mui/material';
 //
 import { StyledNavItem, StyledNavItemIcon } from './styles';
@@ -30,25 +32,38 @@ NavItem.propTypes = {
 };
 
 function NavItem({ item }) {
-  const { title, path, icon, info } = item;
+  const { title, path, icon, info, roles } = item;
+  const [userRole, setuserRole] = useState([]);
 
+  // const hasCommonElement = (arr1, arr2) => ;
+  const a = useSelector((state) => state.userRole.role);
+
+  useMemo(() => {
+    setuserRole(a);
+  }, [a]);
   return (
-    <StyledNavItem
-      component={RouterLink}
-      to={path}
-      sx={{
-        '&.active': {
-          color: 'text.primary',
-          bgcolor: 'action.selected',
-          fontWeight: 'fontWeightBold',
-        },
-      }}
-    >
-      <StyledNavItemIcon>{icon && icon}</StyledNavItemIcon>
+    <>
+      {roles.some((ele) => userRole.includes(ele)) ? (
+        <StyledNavItem
+          component={RouterLink}
+          to={path}
+          sx={{
+            '&.active': {
+              color: 'text.primary',
+              bgcolor: 'action.selected',
+              fontWeight: 'fontWeightBold',
+            },
+          }}
+        >
+          <StyledNavItemIcon>{icon && icon}</StyledNavItemIcon>
 
-      <ListItemText disableTypography primary={title} />
+          <ListItemText disableTypography primary={title} />
 
-      {info && info}
-    </StyledNavItem>
+          {info && info}
+        </StyledNavItem>
+      ) : (
+        ''
+      )}
+    </>
   );
 }

@@ -3,18 +3,17 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import DashboardLayout from './layouts/dashboard';
 import SimpleLayout from './layouts/simple';
 //
-import BlogPage from './pages/BlogPage';
-import UserPage from './pages/UserPage';
-import LoginPage from './pages/LoginPage';
-import Page404 from './pages/Page404';
-import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/DashboardAppPage';
+import LoginPage from './pages/LoginPage';
 import Merchant from './pages/Merchant';
 import Order from './pages/Order';
+import Page404 from './pages/Page404';
+import ProductsPage from './pages/ProductsPage';
 import Question from './pages/Question';
 import Review from './pages/Review';
 import Staff from './pages/Staff';
 import Subscription from './pages/Subscription';
+import UserPage from './pages/UserPage';
 import Withdraw from './pages/Withdraw';
 
 // ----------------------------------------------------------------------

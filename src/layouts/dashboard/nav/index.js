@@ -35,7 +35,7 @@ Nav.propTypes = {
 };
 
 export default function Nav({ openNav, onCloseNav, data }) {
-  const [userData, setUserData] = useState(data)
+  const [userData, setUserData] = useState();
   const { pathname } = useLocation();
   const isDesktop = useResponsive('up', 'lg');
 
@@ -45,6 +45,10 @@ export default function Nav({ openNav, onCloseNav, data }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
+
+  useEffect(() => {
+    setUserData(data);
+  }, [data]);
 
   const renderContent = (
     <Scrollbar
@@ -78,8 +82,6 @@ export default function Nav({ openNav, onCloseNav, data }) {
       <NavSection data={navConfig} />
 
       <Box sx={{ flexGrow: 1 }} />
-
-
     </Scrollbar>
   );
 
